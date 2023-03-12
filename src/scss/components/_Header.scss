@@ -1,0 +1,13 @@
+.header {
+	padding: 10px 0;
+	font-size: 18px;
+	&__container {
+		padding: 10px 15px;
+		background-color: #fff;
+	}
+}
+
+.menu {
+	display: flex;
+	justify-content: space-between;
+}
