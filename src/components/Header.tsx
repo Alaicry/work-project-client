@@ -1,25 +1,70 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { navLinkRoutes } from "../utils/constants/routes";
+import { useAppDispatch } from "../store";
+import { selectIsAuth, signout } from "../store/slices/authSlice";
 
 const Header: React.FC = () => {
+	const dispatch = useAppDispatch();
+	const isAuth = useSelector(selectIsAuth);
+	const onClickLogout = () => {
+		if (window.confirm("Вы действительно хотите выйти?")) {
+			dispatch(signout());
+			window.localStorage.removeItem("token");
+		}
+	};
+
 	return (
 		<header className="header">
 			<div className="header__container container container--rounded">
 				<nav className="nav">
 					<ul className="menu menu-reset">
-						{navLinkRoutes.map((route, index) => (
-							<li className="menu__item" key={index}>
+						<li className="menu__item">
+							<NavLink
+								to="/"
+								className={({ isActive }) =>
+									isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
+								}
+							>
+								Главная
+							</NavLink>
+						</li>
+						<li className="menu__item">
+							<NavLink
+								to="/employees"
+								className={({ isActive }) =>
+									isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
+								}
+							>
+								Сотрудники
+							</NavLink>
+						</li>
+						<li className="menu__item">
+							<NavLink
+								to="/devices"
+								className={({ isActive }) =>
+									isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
+								}
+							>
+								Типы устройств
+							</NavLink>
+						</li>
+						<li className="menu__item">
+							{isAuth ? (
+								<a onClick={onClickLogout} className="menu__link button-reset">
+									Выход
+								</a>
+							) : (
 								<NavLink
-									to={route.to}
+									to="/auth/signin"
 									className={({ isActive }) =>
 										isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
 									}
 								>
-									{route.name}
+									Вход
 								</NavLink>
-							</li>
-						))}
+							)}
+						</li>
 					</ul>
 				</nav>
 			</div>

@@ -13,6 +13,6 @@ export const navLinkRoutes = [
 	},
 	{
 		to: "/auth",
-		name: "Авторизация",
+		name: "Вход",
 	},
 ];

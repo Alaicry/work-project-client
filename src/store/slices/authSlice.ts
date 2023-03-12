@@ -1,8 +1,17 @@
+import { RootState } from "./../index";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchUserData = createAsyncThunk("auth/fetchUserData", async (params) => {
+export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (params) => {
 	const { data } = await axios.post("http://localhost:4001/auth/signin", params);
+	return data;
+});
+export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
+	const { data } = await axios.get("http://localhost:4001/auth/me", {
+		headers: {
+			Authorization: window.localStorage.getItem("token"),
+		},
+	});
 	return data;
 });
 
@@ -14,23 +23,41 @@ const initialState = {
 const authSlice = createSlice({
 	name: "@@auth",
 	initialState,
-	reducers: {},
+	reducers: {
+		signout: (state) => {
+			state.status = "received";
+			state.userData = null;
+		},
+	},
 	extraReducers: (builder) =>
 		builder
-			.addCase(fetchUserData.pending, (state) => {
-				state.userData = [];
+			.addCase(fetchAuth.pending, (state) => {
+				state.userData = null;
 				state.status = "loading";
 			})
-			.addCase(fetchUserData.rejected, (state) => {
-				state.userData = [];
+			.addCase(fetchAuth.rejected, (state) => {
+				state.userData = null;
 				state.status = "rejected";
 			})
-			.addCase(fetchUserData.fulfilled, (state, action) => {
+			.addCase(fetchAuth.fulfilled, (state, action) => {
+				state.userData = action.payload;
+				state.status = "received";
+			})
+			.addCase(fetchAuthMe.pending, (state) => {
+				state.userData = null;
+				state.status = "loading";
+			})
+			.addCase(fetchAuthMe.rejected, (state) => {
+				state.userData = null;
+				state.status = "rejected";
+			})
+			.addCase(fetchAuthMe.fulfilled, (state, action) => {
 				state.userData = action.payload;
 				state.status = "received";
 			}),
 });
 
-export const {} = authSlice.actions;
+export const { signout } = authSlice.actions;
 
+export const selectIsAuth = (state: RootState) => Boolean(state.auth.userData);
 export default authSlice.reducer;

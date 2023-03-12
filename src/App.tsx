@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route } from "react-router";
 import { Routes } from "react-router-dom";
 import Footer from "./components/Footer";
@@ -6,13 +7,17 @@ import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import Employees from "./pages/Employees";
 import Home from "./pages/Home";
+import { useAppDispatch } from "./store";
+import { fetchAuthMe, selectIsAuth } from "./store/slices/authSlice";
 
-type Props = {};
+const App = () => {
+	const dispatch = useAppDispatch();
+	const isAuth = useSelector(selectIsAuth);
 
-const App = (props: Props) => {
-	console.log(window.innerHeight);
-	console.log(window.outerHeight);
-
+	React.useEffect(() => {
+		dispatch(fetchAuthMe());
+	}, []);
+	console.log(isAuth);
 	return (
 		<React.Fragment>
 			<Header />
@@ -21,7 +26,7 @@ const App = (props: Props) => {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/employees" element={<Employees />} />
-						<Route path="/auth" element={<Auth />} />
+						<Route path="/auth/signin" element={<Auth />} />
 					</Routes>
 				</div>
 			</main>

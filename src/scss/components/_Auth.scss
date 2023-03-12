@@ -1,5 +1,5 @@
 .auth {
-	padding: 200px;
+	padding: 150px;
 	background-color: #fdfdfd;
 	border-radius: 10px;
 	&__form {
@@ -9,10 +9,11 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	// justify-content: space-between;
 	align-items: center;
-	gap: 20px;
+	gap: 15px;
 	&__button {
+		color: #222222;
 		background-color: #f9c0a0;
 	}
 }

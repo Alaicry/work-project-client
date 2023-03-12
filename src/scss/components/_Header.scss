@@ -9,5 +9,13 @@
 
 .menu {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
+	&__link {
+		padding: 3px 10px;
+		border-radius: 5px;
+		&--active {
+			background-color: #f9dbca;
+		}
+	}
 }
