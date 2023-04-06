@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import { selectIsAuth, signout } from "../store/slices/authSlice";
+import { navLinkRoutes } from "../utils/constants/routes";
 
 const Header: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -19,42 +20,26 @@ const Header: React.FC = () => {
 			<div className="header__container container container--rounded">
 				<nav className="nav">
 					<ul className="menu menu-reset">
-						<li className="menu__item">
-							<NavLink
-								to="/"
-								className={({ isActive }) =>
-									isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
-								}
-							>
-								Главная
-							</NavLink>
-						</li>
-						<li className="menu__item">
-							<NavLink
-								to="/employees"
-								className={({ isActive }) =>
-									isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
-								}
-							>
-								Сотрудники
-							</NavLink>
-						</li>
-						<li className="menu__item">
-							<NavLink
-								to="/devices"
-								className={({ isActive }) =>
-									isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
-								}
-							>
-								Типы устройств
-							</NavLink>
-						</li>
-						<li className="menu__item">
-							{isAuth ? (
-								<a onClick={onClickLogout} className="menu__link button-reset">
+						{navLinkRoutes.map((elem) => (
+							<li className="menu__item" key={elem.name}>
+								<NavLink
+									to={elem.to}
+									className={({ isActive }) =>
+										isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
+									}
+								>
+									{elem.name}
+								</NavLink>
+							</li>
+						))}
+						{isAuth ? (
+							<li className="menu__item">
+								<a className="menu__link button-reset" onClick={onClickLogout}>
 									Выход
 								</a>
-							) : (
+							</li>
+						) : (
+							<li className="menu__item">
 								<NavLink
 									to="/auth/signin"
 									className={({ isActive }) =>
@@ -63,8 +48,8 @@ const Header: React.FC = () => {
 								>
 									Вход
 								</NavLink>
-							)}
-						</li>
+							</li>
+						)}
 					</ul>
 				</nav>
 			</div>

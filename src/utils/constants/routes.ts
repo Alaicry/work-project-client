@@ -11,8 +11,4 @@ export const navLinkRoutes = [
 		to: "/devices",
 		name: "Устройства",
 	},
-	{
-		to: "/auth",
-		name: "Вход",
-	},
 ];
