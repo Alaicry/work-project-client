@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import { selectIsAuth, signout } from "../store/slices/authSlice";
 import { navLinkRoutes } from "../utils/constants/routes";
+import Container from "../layout/Container";
 
 const Header: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ const Header: React.FC = () => {
 
 	return (
 		<header className="header">
-			<div className="header__container container container--rounded">
+			<Container classNameFromProps="header__container container--rounded">
 				<nav className="nav">
 					<ul className="menu menu-reset">
 						{navLinkRoutes.map((elem) => (
@@ -52,7 +53,7 @@ const Header: React.FC = () => {
 						)}
 					</ul>
 				</nav>
-			</div>
+			</Container>
 		</header>
 	);
 };

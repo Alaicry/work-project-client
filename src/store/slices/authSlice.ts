@@ -1,9 +1,10 @@
 import { RootState } from "./../index";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { AuthParams } from "../../types/auth";
 
-export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (params) => {
-	const { data } = await axios.post("http://localhost:4001/auth/signin", params);
+export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (params: AuthParams) => {
+	const { data } = await axios.post<[]>("http://localhost:4001/auth/signin", params);
 	return data;
 });
 export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
@@ -15,7 +16,12 @@ export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
 	return data;
 });
 
-const initialState = {
+interface IAuthState {
+	userData: null | [];
+	status: string;
+}
+
+const initialState: IAuthState = {
 	userData: null,
 	status: "loading",
 };

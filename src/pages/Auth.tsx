@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import { fetchAuth, selectIsAuth } from "../store/slices/authSlice";
+import { AuthParams } from "../types/auth";
 
 const Auth: React.FC = () => {
 	const isAuth = useSelector(selectIsAuth);
@@ -21,7 +22,7 @@ const Auth: React.FC = () => {
 		mode: "all",
 	});
 
-	const onSubmit = async (values) => {
+	const onSubmit = async (values: AuthParams) => {
 		const data = await dispatch(fetchAuth(values));
 		if (!data.payload) {
 			alert("Не удалось авторизоваться");
