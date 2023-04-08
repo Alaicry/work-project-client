@@ -26,6 +26,7 @@ const initialState: IAuthState = {
 	status: "loading",
 };
 
+
 const authSlice = createSlice({
 	name: "@@auth",
 	initialState,

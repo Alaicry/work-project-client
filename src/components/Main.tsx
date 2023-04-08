@@ -11,14 +11,14 @@ import { useSelector } from "react-redux";
 const Main: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const isAuth = useSelector(selectIsAuth);
+
 	React.useEffect(() => {
 		dispatch(fetchAuthMe());
 	}, [dispatch]);
-	console.log(isAuth);
 
 	return (
-		<main className="main">
-			<Container classNameFromProps="container--rounded main__container">
+		<main>
+			<Container>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/employees" element={<Employees />} />

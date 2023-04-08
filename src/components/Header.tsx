@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import { selectIsAuth, signout } from "../store/slices/authSlice";
-import { navLinkRoutes } from "../utils/constants/routes";
-import Container from "../layout/Container";
+import { navLinkRoutes } from "../utils/constants/routes.constants";
+import { Box, Container } from "@chakra-ui/react";
 
 const Header: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -17,44 +17,28 @@ const Header: React.FC = () => {
 	};
 
 	return (
-		<header className="header">
-			<Container classNameFromProps="header__container container--rounded">
-				<nav className="nav">
-					<ul className="menu menu-reset">
+		<Box as="header">
+			<Container maxW="1280px" marginX="auto" marginY="0">
+				<Box as="nav">
+					<ul>
 						{navLinkRoutes.map((elem) => (
-							<li className="menu__item" key={elem.name}>
-								<NavLink
-									to={elem.to}
-									className={({ isActive }) =>
-										isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
-									}
-								>
-									{elem.name}
-								</NavLink>
+							<li key={elem.name}>
+								<NavLink to={elem.to}>{elem.name}</NavLink>
 							</li>
 						))}
 						{isAuth ? (
-							<li className="menu__item">
-								<a className="menu__link button-reset" onClick={onClickLogout}>
-									Выход
-								</a>
+							<li>
+								<a onClick={onClickLogout}>Выход</a>
 							</li>
 						) : (
-							<li className="menu__item">
-								<NavLink
-									to="/auth/signin"
-									className={({ isActive }) =>
-										isActive ? "menu__link menu__link--active link-reset" : "menu__link link-reset"
-									}
-								>
-									Вход
-								</NavLink>
+							<li>
+								<NavLink to="/auth/signin">Вход</NavLink>
 							</li>
 						)}
 					</ul>
-				</nav>
+				</Box>
 			</Container>
-		</header>
+		</Box>
 	);
 };
 
