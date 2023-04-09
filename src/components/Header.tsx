@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import { selectIsAuth, signout } from "../store/slices/authSlice";
 import { navLinkRoutes } from "../utils/constants/routes.constants";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Button, Container, Link, ListItem, UnorderedList } from "@chakra-ui/react";
 
 const Header: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -17,25 +17,62 @@ const Header: React.FC = () => {
 	};
 
 	return (
-		<Box as="header">
-			<Container maxW="1280px" marginX="auto" marginY="0">
+		<Box as="header" paddingY="10px" fontWeight="500" lineHeight="1.25">
+			<Container
+				maxW="1280px"
+				marginX="auto"
+				marginY="0"
+				paddingX="30px"
+				paddingY="5px"
+				borderRadius="10px"
+				backgroundColor="#fff"
+			>
 				<Box as="nav">
-					<ul>
+					<UnorderedList
+						margin="0"
+						display="flex"
+						alignItems="center"
+						listStyleType="none"
+						justifyContent="space-between"
+					>
 						{navLinkRoutes.map((elem) => (
-							<li key={elem.name}>
-								<NavLink to={elem.to}>{elem.name}</NavLink>
-							</li>
+							<ListItem
+								key={elem.name}
+								paddingY="5px"
+								paddingX="10px"
+								borderRadius="6px"
+								transition="all ease 0.3s"
+								_hover={{ backgroundColor: "#f0c3ac" }}
+							>
+								<Link
+									as={RouterNavLink}
+									to={elem.to}
+									textDecoration="none"
+									_hover={{ textDecoration: "none" }}
+								>
+									{elem.name}
+								</Link>
+							</ListItem>
 						))}
-						{isAuth ? (
-							<li>
-								<a onClick={onClickLogout}>Выход</a>
-							</li>
-						) : (
-							<li>
-								<NavLink to="/auth/signin">Вход</NavLink>
-							</li>
+						{!isAuth && (
+							<ListItem
+								paddingY="5px"
+								paddingX="10px"
+								borderRadius="6px"
+								transition="all ease 0.3s"
+								_hover={{ backgroundColor: "#f0c3ac" }}
+							>
+								<Link
+									as={RouterNavLink}
+									to="/auth/signin"
+									textDecoration="none"
+									_hover={{ textDecoration: "none" }}
+								>
+									Вход
+								</Link>
+							</ListItem>
 						)}
-					</ul>
+					</UnorderedList>
 				</Box>
 			</Container>
 		</Box>

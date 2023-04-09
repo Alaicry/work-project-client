@@ -3,16 +3,15 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import theme from "./theme";
-import { CSSReset, ChakraProvider } from "@chakra-ui/react";
+import { ChakraBaseProvider } from "@chakra-ui/react";
 
 const App: React.FC = () => {
 	return (
-		<ChakraProvider theme={theme}>
-			<CSSReset />
+		<ChakraBaseProvider theme={theme} resetCSS={true}>
 			<Header />
 			<Main />
 			<Footer />
-		</ChakraProvider>
+		</ChakraBaseProvider>
 	);
 };
 

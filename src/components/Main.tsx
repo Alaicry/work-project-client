@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "../layout/Container";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Employees from "../pages/Employees";
@@ -7,6 +6,7 @@ import Auth from "../pages/Auth";
 import { useAppDispatch } from "../store";
 import { fetchAuthMe, selectIsAuth } from "../store/slices/authSlice";
 import { useSelector } from "react-redux";
+import { Container } from "@chakra-ui/react";
 
 const Main: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ const Main: React.FC = () => {
 
 	return (
 		<main>
-			<Container>
+			<Container maxW="1280px" marginX="auto" marginY="0" paddingX="15px">
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/employees" element={<Employees />} />
