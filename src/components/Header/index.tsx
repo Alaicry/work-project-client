@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../store";
 import { selectIsAuth, signout } from "../../store/slices/authSlice";
 import { NavLink } from "react-router-dom";
-import { guidesLinkRoutes, journalsLinkRoutes } from "../../utils/constants/routes";
-import Dropdown from "../Dropdown/Dropdown";
+import {
+	guidesLinkRoutes,
+	headerLinkRoutes,
+	journalsLinkRoutes,
+} from "../../utils/constants/routes";
 
 const Header: React.FC = () => {
-	const [menu, setMenu] = React.useState(false);
-
 	const dispatch = useAppDispatch();
 	const isAuth = useSelector(selectIsAuth);
 	const onClickLogout = () => {
@@ -23,28 +24,15 @@ const Header: React.FC = () => {
 	return (
 		<header className={style.header}>
 			<Container classNameFromProps={style.container}>
-				{/* <button className={style.item}>Журналы</button>
-				{menu && (
-					<ul className={style.dropDownMenu}>
-						{journalsLinkRoutes.map((route, index) => (
-							<li key={index}>
-								<NavLink to={route.to}>{route.name}</NavLink>
-							</li>
-						))}
-					</ul>
-				)}
-				<button className={style.item}>Журналы</button>
-				{menu && (
-					<ul className={style.dropDownMenu}>
-						{guidesLinkRoutes.map((route, index) => (
-							<li key={index}>
-								<NavLink to={route.to}>{route.name}</NavLink>
-							</li>
-						))}
-					</ul>
-				)} */}
-				<Dropdown title="Журналы" items={journalsLinkRoutes} />
-				<Dropdown title="Справочник" items={guidesLinkRoutes} />
+				<ul className={style.menu}>
+					{headerLinkRoutes.map((route, index) => (
+						<li className={style.menuItem} key={index}>
+							<NavLink to={route.to} className={style.menuLink}>
+								{route.name}
+							</NavLink>
+						</li>
+					))}
+				</ul>
 			</Container>
 		</header>
 	);

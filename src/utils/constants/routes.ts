@@ -1,3 +1,19 @@
+export const headerLinkRoutes = [
+	{
+		to: "/",
+		name: "Журналы",
+	},
+
+	{
+		to: "/guide",
+		name: "Справочники",
+	},
+	{
+		to: "/login",
+		name: "Вход",
+	},
+];
+
 export const journalsLinkRoutes = [
 	{
 		to: "/journal/terminals",

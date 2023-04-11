@@ -10,7 +10,7 @@ const Container: React.FC<IContainerProps> = ({ children, classNameFromProps }) 
 	return (
 		<div
 			className={
-				classNameFromProps ? `${classNameFromProps} ${style.container}` : `${style.container}`
+				classNameFromProps ? `${style.container} ${classNameFromProps}` : `${style.container}`
 			}
 		>
 			{children}

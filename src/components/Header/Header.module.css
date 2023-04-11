@@ -1,20 +1,18 @@
 .header {
-	padding: 10px 15px;
+	padding-top: 10px;
+	flex: 0 0 auto;
 }
 
 .container {
-	border-radius: 10px;
-	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 40px;
+	padding: 10px 15px;
 }
 
 .menu {
-	list-style-type: none;
-}
-
-.item {
-
-}
-
-.link {
-  
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
