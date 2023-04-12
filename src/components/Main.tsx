@@ -1,12 +1,12 @@
 import React from "react";
-import Home from "../../pages/Home";
-import Employees from "../../pages/Employees";
-import Auth from "../../pages/Auth";
-import { fetchAuthMe } from "../../store/slices/authSlice";
-import { useAppDispatch } from "../../store";
+import Home from "../pages/Home";
+import Employees from "../pages/Employees";
+import Auth from "../pages/Auth";
+import { fetchAuthMe } from "../store/slices/authSlice";
+import { useAppDispatch } from "../store";
 import { Routes, Route } from "react-router-dom";
-import Container from "../../layout/Container";
-import style from "./Main.module.css";
+import Container from "./Container";
+
 const Main: React.FC = () => {
 	const dispatch = useAppDispatch();
 
@@ -15,8 +15,8 @@ const Main: React.FC = () => {
 	}, [dispatch]);
 
 	return (
-		<main className={style.main}>
-			<Container classNameFromProps={style.container}>
+		<main>
+			<Container>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/employees" element={<Employees />} />

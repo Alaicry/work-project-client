@@ -26,7 +26,6 @@ const initialState: IAuthState = {
 	status: "loading",
 };
 
-
 const authSlice = createSlice({
 	name: "@@auth",
 	initialState,
@@ -67,4 +66,5 @@ const authSlice = createSlice({
 export const { signout } = authSlice.actions;
 
 export const selectIsAuth = (state: RootState) => Boolean(state.auth.userData);
+export const selectUserData = (state: RootState) => state.auth.userData;
 export default authSlice.reducer;

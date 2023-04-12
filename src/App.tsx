@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
@@ -8,7 +7,6 @@ const App: React.FC = () => {
 		<React.Fragment>
 			<Header />
 			<Main />
-			<Footer />
 		</React.Fragment>
 	);
 };

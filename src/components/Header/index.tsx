@@ -1,19 +1,16 @@
 import React, { ReactEventHandler } from "react";
-import style from "./Header.module.css";
-import Container from "../../layout/Container";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../store";
-import { selectIsAuth, signout } from "../../store/slices/authSlice";
+import { selectIsAuth, selectUserData, signout } from "../../store/slices/authSlice";
 import { NavLink } from "react-router-dom";
-import {
-	guidesLinkRoutes,
-	headerLinkRoutes,
-	journalsLinkRoutes,
-} from "../../utils/constants/routes";
+import style from "./Header.module.css";
+import Container from "../Container";
+import { navLinkRoutes } from "../../utils/constants/routes";
 
 const Header: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const isAuth = useSelector(selectIsAuth);
+
 	const onClickLogout = () => {
 		if (window.confirm("Вы действительно хотите выйти?")) {
 			dispatch(signout());
@@ -23,16 +20,41 @@ const Header: React.FC = () => {
 
 	return (
 		<header className={style.header}>
-			<Container classNameFromProps={style.container}>
-				<ul className={style.menu}>
-					{headerLinkRoutes.map((route, index) => (
-						<li className={style.menuItem} key={index}>
-							<NavLink to={route.to} className={style.menuLink}>
-								{route.name}
-							</NavLink>
-						</li>
-					))}
-				</ul>
+			<Container>
+				<nav className={style.nav}>
+					<ul className={style.menu}>
+						{navLinkRoutes.map((route, index) => (
+							<li className={style.menuItem} key={index}>
+								<NavLink
+									className={({ isActive }) =>
+										isActive ? `${style.menuLink} ${style.menuLinkActive}` : `${style.menuLink}`
+									}
+									to={route.path}
+								>
+									{route.name}
+								</NavLink>
+							</li>
+						))}
+						{!isAuth ? (
+							<li className={style.menuItem}>
+								<NavLink
+									className={({ isActive }) =>
+										isActive ? `${style.menuLink} ${style.menuLinkActive}` : `${style.menuLink}`
+									}
+									to="/auth/signin"
+								>
+									Авторизация
+								</NavLink>
+							</li>
+						) : (
+							<li className={style.menuItem}>
+								<NavLink className={style.menuLink} to="#" onClick={onClickLogout}>
+									Выход
+								</NavLink>
+							</li>
+						)}
+					</ul>
+				</nav>
 			</Container>
 		</header>
 	);
