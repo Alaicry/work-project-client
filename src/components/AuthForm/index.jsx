@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./AuthForm.module.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAuth, selectIsAuth } from "../../store/slices/authSlice";
@@ -21,7 +22,7 @@ const AuthForm = () => {
 	});
 
 	const onSubmit = async (values) => {
-		const data = await dispatch(fetchAuth(values));
+		const data = await dispatch(fetchAuth(values)).catch((err) => console.log(err));
 		if (!data.payload) {
 			alert("Не удалось авторизоваться");
 		}
@@ -35,32 +36,34 @@ const AuthForm = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<h4>Вход в аккаунт</h4>
-			<label>
-				Адрес электронной почты
-				<input
-					type="email"
-					aria-invalid={errors.email ? true : false}
-					{...register("email", {
-						required: "Укажите почту",
-					})}
-				/>
-				{errors.email && <p>{errors.email?.message}</p>}
-			</label>
-			<label>
-				Пароль
-				<input
-					type="password"
-					aria-invalid={errors.password ? true : false}
-					{...register("password", {
-						required: "Укажите пароль",
-					})}
-				/>
-				{errors.password && <p>{errors.password?.message}</p>}
-			</label>
-			<button type="submit">Войти</button>
-		</form>
+		<section className={style.auth}>
+			<form className={style.authForm} onSubmit={handleSubmit(onSubmit)}>
+				<h2 className={style.authTitle}>Вход в аккаунт</h2>
+				<label>
+					Адрес электронной почты
+					<input
+						type="email"
+						aria-invalid={errors.email ? true : false}
+						{...register("email", {
+							required: "Укажите почту",
+						})}
+					/>
+					{errors.email && <p>{errors.email?.message}</p>}
+				</label>
+				<label>
+					Пароль
+					<input
+						type="password"
+						aria-invalid={errors.password ? true : false}
+						{...register("password", {
+							required: "Укажите пароль",
+						})}
+					/>
+					{errors.password && <p>{errors.password?.message}</p>}
+				</label>
+				<button type="submit">Войти</button>
+			</form>
+		</section>
 	);
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
-const App: React.FC = () => {
+const App = () => {
 	return (
 		<React.Fragment>
 			<Header />

@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-const Employees = (props: Props) => {
+const Employees = (props) => {
 	return (
 		<section className="employees">
 			<div className="container container--rounded"></div>
