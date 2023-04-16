@@ -2,8 +2,6 @@
 	padding: 10px 0;
 }
 
-
-
 .nav {
 	font-weight: 500;
 }
@@ -29,5 +27,15 @@
 }
 
 .menuLinkActive {
+	background-color: rgba(248, 177, 120, 0.5);
+}
+
+.menuButton {
+	font-weight: 500;
+	padding: 7px;
+	border-radius: 5px;
+}
+
+.menuButton:hover {
 	background-color: rgba(248, 177, 120, 0.5);
 }

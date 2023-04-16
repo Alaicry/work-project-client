@@ -1,10 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuth, selectUserData, signout } from "../../store/slices/authSlice";
-import { NavLink } from "react-router-dom";
+import Container from "../../layout/Container";
 import style from "./Header.module.css";
-import Container from "../Container";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsAuth, signout } from "../../store/slices/authSlice";
+import { NavLink } from "react-router-dom";
 import { navLinkRoutes } from "../../utils/constants/routes";
+import AuthModal from "../AuthModal";
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -40,19 +41,20 @@ const Header = () => {
 						))}
 						{!isAuth ? (
 							<li className={style.menuItem}>
-								<NavLink className={style.menuLink} to="#" onClick={toggleModal}>
+								<button className={style.menuButton} onClick={toggleModal}>
 									Авторизация
-								</NavLink>
+								</button>
 							</li>
 						) : (
 							<li className={style.menuItem}>
-								<NavLink className={style.menuLink} to="#" onClick={onClickLogout}>
+								<button className={style.menuButton} onClick={onClickLogout}>
 									Выход
-								</NavLink>
+								</button>
 							</li>
 						)}
 					</ul>
 				</nav>
+				{modal && <AuthModal toggleModal={toggleModal} modal={modal} />}
 			</Container>
 		</header>
 	);
