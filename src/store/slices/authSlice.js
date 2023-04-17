@@ -3,9 +3,9 @@ import axios from "axios";
 
 export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (params) => {
 	const { data } = await axios.post("http://localhost:4001/auth/signin", params);
-	console.log(data);
 	return data;
 });
+
 export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {
 	const { data } = await axios.get("http://localhost:4001/auth/me", {
 		headers: {

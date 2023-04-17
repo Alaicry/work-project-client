@@ -21,7 +21,16 @@ const AuthModal = ({ toggleModal, modal }) => {
 
 	const onSubmitAuth = async (values) => {
 		const data = await dispatch(fetchAuth(values));
-		
+
+		if (!data.payload) {
+			return alert("Не удалось авторизоваться!");
+		}
+
+		if ("token" in data.payload) {
+			window.localStorage.setItem("token", data.payload.token);
+		} else {
+			alert("Не удалось авторизоваться!");
+		}
 		toggleModal(!modal);
 	};
 
@@ -38,6 +47,7 @@ const AuthModal = ({ toggleModal, modal }) => {
 							placeholder="Введите почту"
 							{...register("email", { required: "Укажите почту" })}
 						/>
+						{errors.email && <p className={style.error}>{errors.email.message}</p>}
 					</div>
 					<div className={style.field}>
 						<label className={style.label}>Пароль</label>
@@ -47,6 +57,7 @@ const AuthModal = ({ toggleModal, modal }) => {
 							placeholder="Введите пароль"
 							{...register("password", { required: "Укажите пароль" })}
 						/>
+						{errors.password && <p className={style.error}>{errors.password.message}</p>}
 					</div>
 					<button type="submit" className={style.buttonSubmit}>
 						Войти

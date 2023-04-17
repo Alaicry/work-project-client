@@ -33,6 +33,7 @@
 }
 
 .field {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -64,4 +65,11 @@
 }
 .buttonClose:hover {
 	background-color: #dddddd;
+}
+
+.error {
+	position: absolute;
+	top: 70px;
+	font-size: 14px;
+	color: #ca1919;
 }
