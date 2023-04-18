@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./AuthModal.module.css";
+import style from "./AuthModal.module.scss";
 import { useForm } from "react-hook-form";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch } from "react-redux";

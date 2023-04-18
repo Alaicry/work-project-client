@@ -1,11 +1,11 @@
 import React from "react";
-import Container from "../../layout/Container";
-import style from "./Header.module.css";
+import AuthModal from "../AuthModal";
+import Container from "../Container";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuth, signout } from "../../store/slices/authSlice";
 import { NavLink } from "react-router-dom";
 import { navLinkRoutes } from "../../utils/constants/routes";
-import AuthModal from "../AuthModal";
+import style from "./Header.module.scss";
 
 const Header = () => {
 	const dispatch = useDispatch();

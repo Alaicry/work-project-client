@@ -1,0 +1,37 @@
+.header {
+	padding: 10px 0;
+}
+
+.nav {
+	font-weight: 500;
+}
+
+.menu {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	&Item {
+		padding: 7px;
+		border-radius: 5px;
+	}
+
+	&Link {
+		padding: 7px;
+		border-radius: 5px;
+		&:hover {
+			background-color: rgba(248, 177, 120, 0.5);
+		}
+		&Active {
+			background-color: rgba(248, 177, 120, 0.5);
+		}
+	}
+	&Button {
+		font-weight: 500;
+		padding: 7px;
+		border-radius: 5px;
+		&:hover {
+			background-color: rgba(248, 177, 120, 0.5);
+		}
+	}
+}

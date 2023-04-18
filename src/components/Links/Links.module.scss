@@ -1,0 +1,30 @@
+.links {
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 15px;
+	&Item {
+		padding: 14px 10px;
+		border-radius: 10px;
+		transition: all ease 0.3s;
+		background-color: rgba(229, 229, 229, 1);
+		&:hover {
+			background-color: rgba(229, 229, 229, 0.55);
+		}
+	}
+	&Link {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+}
+
+.icon {
+	width: 15px;
+	height: 15px;
+}

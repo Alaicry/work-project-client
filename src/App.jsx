@@ -1,11 +1,11 @@
 import React from "react";
 import Home from "./pages/HomePage";
-import Header from "./components/Header";
-import Container from "./layout/Container";
+import Main from "./layout/Main";
+import GuidePage from "./pages/GuidePage";
+import TerminalJournalPage from "./pages/TerminalJournalPage";
 import { useDispatch } from "react-redux";
 import { fetchAuthMe } from "./store/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
-import GuidePage from "./pages/GuidePage";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -16,13 +16,13 @@ const App = () => {
 
 	return (
 		<React.Fragment>
-			<Header />
-			<Container>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/guide" element={<GuidePage />} />
-				</Routes>
-			</Container>
+			<Routes>
+				<Route path="/" element={<Main />}>
+					<Route path="" element={<Home />} />
+					<Route path="guide" element={<GuidePage />} />
+				</Route>
+				<Route path="/terminal-journal" element={<TerminalJournalPage />} />
+			</Routes>
 		</React.Fragment>
 	);
 };
