@@ -3,7 +3,7 @@
 }
 
 .nav {
-	font-weight: 500;
+	font-weight: 400;
 }
 
 .menu {
@@ -23,11 +23,12 @@
 			background-color: rgba(248, 177, 120, 0.5);
 		}
 		&Active {
+			font-weight: 500;
 			background-color: rgba(248, 177, 120, 0.5);
 		}
 	}
 	&Button {
-		font-weight: 500;
+		font-weight: 400;
 		padding: 7px;
 		border-radius: 5px;
 		&:hover {
