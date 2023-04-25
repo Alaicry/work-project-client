@@ -1,10 +1,14 @@
 import React from "react";
 import Container from "../Container";
 import style from "./TerminalGuideForm.module.scss";
-import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { getTerminalGuide } from "../../store/slices/terminalGuideSlice";
 
 const TerminalGuideForm = () => {
+	const dispatch = useDispatch();
+
 	const {
 		register,
 		handleSubmit,
@@ -18,8 +22,6 @@ const TerminalGuideForm = () => {
 		mode: "onSubmit",
 	});
 
-	const [arr, setArr] = React.useState([]);
-
 	const postDeviceSubmit = async (values) => {
 		const data = await axios.post("http://localhost:4001/devices", values);
 		console.log(data);
@@ -28,16 +30,9 @@ const TerminalGuideForm = () => {
 	};
 
 	React.useEffect(() => {
-		axios
-			.get("http://localhost:4001/devices", {
-				headers: {
-					Authorization: window.localStorage.getItem("token"),
-				},
-			})
-			.then((res) => setArr(res.data));
+		dispatch(getTerminalGuide());
 	}, []);
 
-	console.log(arr);
 	return (
 		<Container>
 			<form className={style.form} onSubmit={handleSubmit(postDeviceSubmit)}>
@@ -73,11 +68,6 @@ const TerminalGuideForm = () => {
 					<button type="submit">Добавить</button>
 				</div>
 			</form>
-			<div>
-				{arr.map((elem) => (
-					<li key={elem._id}>{elem.deviceBrand}</li>
-				))}
-			</div>
 		</Container>
 	);
 };
