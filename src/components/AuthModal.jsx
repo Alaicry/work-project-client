@@ -1,9 +1,8 @@
 import React from "react";
-import style from "./AuthModal.module.scss";
 import { useForm } from "react-hook-form";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { fetchAuth } from "../../store/slices/authSlice";
+import { fetchAuth } from "../store/slices/authSlice";
 
 const AuthModal = ({ toggleModal, modal }) => {
 	const dispatch = useDispatch();
@@ -35,34 +34,34 @@ const AuthModal = ({ toggleModal, modal }) => {
 	};
 
 	return (
-		<div className={style.modal}>
-			<form className={style.form} onSubmit={handleSubmit(onSubmitAuth)}>
-				<h2 className={style.title}>Войдите в свой аккаунт</h2>
-				<div className={style.formWrapper}>
-					<div className={style.field}>
-						<label className={style.label}>Адрес электронной почты</label>
+		<div className="">
+			<form className="" onSubmit={handleSubmit(onSubmitAuth)}>
+				<h2 className="">Войдите в свой аккаунт</h2>
+				<div className="">
+					<div className="">
+						<label className="">Адрес электронной почты</label>
 						<input
 							type="text"
-							className={style.input}
+							className=""
 							placeholder="Введите почту"
 							{...register("email", { required: "Укажите почту" })}
 						/>
-						{errors.email && <p className={style.error}>{errors.email.message}</p>}
+						{errors.email && <p className="">{errors.email.message}</p>}
 					</div>
-					<div className={style.field}>
+					<div className="">
 						<label className={style.label}>Пароль</label>
 						<input
 							type="password"
-							className={style.input}
+							className=""
 							placeholder="Введите пароль"
 							{...register("password", { required: "Укажите пароль" })}
 						/>
-						{errors.password && <p className={style.error}>{errors.password.message}</p>}
+						{errors.password && <p className="">{errors.password.message}</p>}
 					</div>
-					<button type="submit" className={style.buttonSubmit}>
+					<button type="submit" className="">
 						Войти
 					</button>
-					<button type="button" className={style.buttonClose} onClick={toggleModal}>
+					<button type="button" className="" onClick={toggleModal}>
 						<RxCross1 />
 					</button>
 				</div>

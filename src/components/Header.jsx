@@ -1,11 +1,10 @@
 import React from "react";
-import AuthModal from "../AuthModal";
-import Container from "../Container";
+import AuthModal from "./AuthModal";
+import Container from "./Container";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuth, signout } from "../../store/slices/authSlice";
+import { selectIsAuth, signout } from "../store/slices/authSlice";
 import { NavLink } from "react-router-dom";
-import { navLinkRoutes } from "../../utils/constants/routes";
-import style from "./Header.module.scss";
+import { navLinkRoutes } from "../utils/constants/routes";
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -23,15 +22,17 @@ const Header = () => {
 	};
 
 	return (
-		<header className={style.header}>
+		<header className="py-[10px]">
 			<Container>
-				<nav className={style.nav}>
-					<ul className={style.menu}>
+				<nav className="nav">
+					<ul className="flex items-center justify-between">
 						{navLinkRoutes.map((route, index) => (
-							<li className={style.menuItem} key={index}>
+							<li className="py-[5px]" key={index}>
 								<NavLink
 									className={({ isActive }) =>
-										isActive ? `${style.menuLink} ${style.menuLinkActive}` : `${style.menuLink}`
+										isActive
+											? "p-[7.5px] rounded-md bg-orange-200 font-medium"
+											: "p-[7.5px] rounded-md hover:bg-orange-200"
 									}
 									to={route.path}
 								>
@@ -39,19 +40,23 @@ const Header = () => {
 								</NavLink>
 							</li>
 						))}
-						{!isAuth ? (
-							<li className={style.menuItem}>
-								<button className={style.menuButton} onClick={toggleModal}>
+						<li className="p-[7px] rounded-md hover:bg-orange-200">
+							{!isAuth ? (
+								<button
+									className="cursor-pointer focus:outline-none"
+									onClick={toggleModal}
+								>
 									Авторизация
 								</button>
-							</li>
-						) : (
-							<li className={style.menuItem}>
-								<button className={style.menuButton} onClick={onClickLogout}>
+							) : (
+								<button
+									className="cursor-pointer focus:outline-none"
+									onClick={onClickLogout}
+								>
 									Выход
 								</button>
-							</li>
-						)}
+							)}
+						</li>
 					</ul>
 				</nav>
 				{modal && <AuthModal toggleModal={toggleModal} modal={modal} />}
