@@ -34,35 +34,50 @@ const AuthModal = ({ toggleModal, modal }) => {
 	};
 
 	return (
-		<div className="">
-			<form className="" onSubmit={handleSubmit(onSubmitAuth)}>
-				<h2 className="">Войдите в свой аккаунт</h2>
-				<div className="">
-					<div className="">
-						<label className="">Адрес электронной почты</label>
+		<div className="w-screen h-screen fixed top-0 left-0 flex items-center justify-center bg-black-rgba">
+			<form
+				className="w-[500px] p-[25px] rounded-xl bg-white relative"
+				onSubmit={handleSubmit(onSubmitAuth)}
+			>
+				<button
+					type="button"
+					className="absolute top-[15px] right-[15px] p-1 flex items-center justify-center rounded-full bg-[#f0f0f0] transition-all ease delay-[0.15s] hover:bg-[#dddddd]"
+					onClick={toggleModal}
+				>
+					<RxCross1 />
+				</button>
+				<h2 className="font-medium text-center mb-6">Войдите в свой аккаунт</h2>
+				<div className="flex flex-col gap-6">
+					<div className="flex flex-col gap-2 relative">
+						<label className="text-base">Адрес электронной почты</label>
 						<input
 							type="text"
-							className=""
+							className="py-2 px-3 bg-gray-100 rounded-lg focus:outline-none"
 							placeholder="Введите почту"
 							{...register("email", { required: "Укажите почту" })}
 						/>
-						{errors.email && <p className="">{errors.email.message}</p>}
+						{errors.email && (
+							<p className="absolute top-[70px] text-sm text-red-400">
+								{errors.email.message}
+							</p>
+						)}
 					</div>
-					<div className="">
-						<label className={style.label}>Пароль</label>
+					<div className="flex flex-col gap-2 relative">
+						<label className="text-base">Пароль</label>
 						<input
 							type="password"
-							className=""
+							className="py-2 px-3 bg-gray-100 rounded-lg focus:outline-none"
 							placeholder="Введите пароль"
 							{...register("password", { required: "Укажите пароль" })}
 						/>
-						{errors.password && <p className="">{errors.password.message}</p>}
+						{errors.password && (
+							<p className="absolute top-[70px] text-sm text-red-400">
+								{errors.password.message}
+							</p>
+						)}
 					</div>
-					<button type="submit" className="">
+					<button type="submit" className="hover:font-medium">
 						Войти
-					</button>
-					<button type="button" className="" onClick={toggleModal}>
-						<RxCross1 />
 					</button>
 				</div>
 			</form>
