@@ -1,14 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchTerminalData = createAsyncThunk(
+export const fetchDevicesData = createAsyncThunk(
 	"@@guide/fetch-terminal-data",
-	async () => {
-		const data = await axios.get("http://localhost:4001/devices", {
-			headers: {
-				Authorization: window.localStorage.getItem("token"),
-			},
-		});
+	async (params) => {
+		const data = await axios.get(
+			`http://localhost:4001/devices?type=${
+				params === "sensors" ? "sensors" : "terminals"
+			}`,
+			{
+				headers: {
+					Authorization: window.localStorage.getItem("token"),
+				},
+			}
+		);
 		return data;
 	}
 );
@@ -26,15 +31,15 @@ const guideSlice = createSlice({
 	},
 	extraReducers: (builder) =>
 		builder
-			.addCase(fetchTerminalData.pending, (state) => {
+			.addCase(fetchDevicesData.pending, (state) => {
 				state.list = [];
 				state.status = "loading";
 			})
-			.addCase(fetchTerminalData.rejected, (state) => {
+			.addCase(fetchDevicesData.rejected, (state) => {
 				state.list = [];
 				state.status = "rejected";
 			})
-			.addCase(fetchTerminalData.fulfilled, (state, action) => {
+			.addCase(fetchDevicesData.fulfilled, (state, action) => {
 				state.list = action.payload.data;
 				state.status = "received";
 			}),

@@ -3,13 +3,12 @@ import Home from "./pages/Home";
 import Guide from "./pages/Guide";
 import Header from "./components/Header";
 import Container from "./components/Container";
-import TerminalGuide from "./pages/TerminalGuide";
 import { useDispatch } from "react-redux";
 import { fetchAuthMe } from "./store/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
+import DevicesGuide from "./pages/DevicesGuide";
 
 const App = () => {
-	
 	const dispatch = useDispatch();
 	React.useEffect(() => {
 		dispatch(fetchAuthMe());
@@ -22,7 +21,8 @@ const App = () => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/guide" element={<Guide />} />
-					<Route path="/guide/terminal" element={<TerminalGuide />} />
+					<Route path="/guide/terminals" element={<DevicesGuide />} />
+					<Route path="/guide/sensors" element={<DevicesGuide />} />
 				</Routes>
 			</Container>
 		</React.Fragment>

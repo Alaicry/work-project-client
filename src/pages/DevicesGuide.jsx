@@ -1,18 +1,18 @@
 import React from "react";
 import ButtonBack from "../components/ButtonBack";
 import { useDispatch, useSelector } from "react-redux";
-import { clearData, fetchTerminalData } from "../store/slices/guideSlice";
+import { clearData, fetchDevicesData } from "../store/slices/guideSlice";
+import { useLocation, useParams } from "react-router-dom";
 
-const TerminalGuide = () => {
+const DevicesGuide = () => {
 	const dispatch = useDispatch();
 	const { list } = useSelector((state) => state.guide);
-	console.log(list);
-
+	const { pathname } = useLocation();
 	React.useEffect(() => {
-		dispatch(fetchTerminalData());
-
+		dispatch(fetchDevicesData(pathname.replace("/guide/", "")));
 		return () => dispatch(clearData());
 	}, []);
+
 	return (
 		<div className="p-2">
 			<ButtonBack />
@@ -29,4 +29,4 @@ const TerminalGuide = () => {
 	);
 };
 
-export default TerminalGuide;
+export default DevicesGuide;

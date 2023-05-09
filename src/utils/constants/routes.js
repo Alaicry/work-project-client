@@ -11,7 +11,7 @@ export const navLinkRoutes = [
 
 export const homeLinks = [
 	{
-		path: "/terminal-journal",
+		path: "/terminals-journal",
 		name: "Журнал навигационных терминалов",
 	},
 	{
@@ -22,11 +22,11 @@ export const homeLinks = [
 
 export const guideLinks = [
 	{
-		path: "/guide/terminal",
+		path: "/guide/terminals",
 		name: "Справочник навигационных терминалов",
 	},
 	{
-		path: "/guide/device",
+		path: "/guide/sensors",
 		name: "Справочник датчиков уровня топлива",
 	},
 	{
