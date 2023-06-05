@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearData, fetchDevicesData } from "../store/slices/guideSlice";
 import { useLocation } from "react-router-dom";
 import DeviceForm from "../components/DeviceForm";
-import Container from "../components/Container";
 
 const DevicesGuide = () => {
 	const dispatch = useDispatch();
@@ -16,7 +15,7 @@ const DevicesGuide = () => {
 	React.useEffect(() => {
 		dispatch(fetchDevicesData(param));
 		return () => dispatch(clearData());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className="p-2">

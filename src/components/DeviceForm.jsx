@@ -1,10 +1,32 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { IoCaretForwardOutline, IoCaretDownOutline } from "react-icons/io5";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { fetchAddDevice, fetchDevicesData } from "../store/slices/guideSlice";
 
 const DeviceForm = () => {
 	const [form, setForm] = React.useState(false);
 	const dispatch = useDispatch();
+	const onSubmitAdd = async (values) => {
+
+		dispatch(fetchAddDevice(values));
+		dispatch(fetchDevicesData());
+	};
+	
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			manufacturerName: "",
+			deviceBrand: "",
+			deviceModel: "",
+			deviceType: "terminal",
+		},
+		mode: "all",
+	});
 
 	return (
 		<React.Fragment>
@@ -20,26 +42,48 @@ const DeviceForm = () => {
 				)}
 			</button>
 			{form && (
-				<form className="flex flex-col">
+				<form className="flex flex-col" onSubmit={handleSubmit(onSubmitAdd)}>
 					<div className="mb-4 p-4 bg-gray-100 rounded-md flex flex-col gap-4">
 						<div className="flex flex-col gap-2">
 							<label className="font-medium">Производитель</label>
-							<input type="text" className="h-10 rounded-md pl-[20px] focus:outline-zinc-400" />
+							<input
+								type="text"
+								className="h-10 rounded-md pl-[20px] focus:outline-zinc-400"
+								{...register("manufacturerName", {
+									required: "Укажите производителя",
+								})}
+							/>
 						</div>
 						<div className="flex flex-col gap-2">
 							<label className="font-medium">Марка</label>
-							<input type="text" className="h-10 rounded-md pl-[20px] focus:outline-zinc-400" />
+							<input
+								type="text"
+								className="h-10 rounded-md pl-[20px] focus:outline-zinc-400"
+								{...register("deviceBrand", {
+									required: "Укажите марку оборудования",
+								})}
+							/>
 						</div>
 						<div className="flex flex-col gap-2">
 							<label className="font-medium">Модель</label>
-							<input type="text" className="h-10 rounded-md pl-[20px] focus:outline-zinc-400" />
+							<input
+								type="text"
+								className="h-10 rounded-md pl-[20px] focus:outline-zinc-400"
+								{...register("deviceModel", {
+									required: "Укажите модель оборудования",
+								})}
+							/>
 						</div>
 						<div className="flex flex-col gap-2">
 							<label className="font-medium">Тип устройства</label>
 							<select
 								name="deviceType"
-								defaultValue="terminal"
+								value="terminal"
+								// defaultValue="terminal"
 								className="h-10 rounded-md pl-[20px]"
+								{...register("deviceType", {
+									required: "Укажите модель оборудования",
+								})}
 							>
 								<option value="sensor">Датчик</option>
 								<option value="terminal">Терминал</option>

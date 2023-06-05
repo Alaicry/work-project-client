@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { fetchAuthMe } from "./store/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
 import DevicesGuide from "./pages/DevicesGuide";
+import UsersGuide from "./pages/UsersGuide";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const App = () => {
 					<Route path="/guide" element={<Guide />} />
 					<Route path="/guide/terminals" element={<DevicesGuide />} />
 					<Route path="/guide/sensors" element={<DevicesGuide />} />
+					<Route path="/guide/users" element={<UsersGuide />} />
 				</Routes>
 			</Container>
 		</React.Fragment>
