@@ -1,0 +1,23 @@
+.header {
+	padding: 10px 0;
+}
+
+.menu {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__item {
+		padding: 5px 0;
+	}
+	&__link {
+		padding: 7.5px;
+		border-radius: 6px;
+		&:hover {
+			background-color: rgb(254, 215, 170);
+		}
+		&--active {
+			font-weight: 500;
+			background-color: rgb(254, 215, 170);
+		}
+	}
+}

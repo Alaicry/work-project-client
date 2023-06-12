@@ -22,17 +22,15 @@ const Header = () => {
 	};
 
 	return (
-		<header className="py-[10px]">
-			<Container>
+		<header className="header">
+			<Container classNameToProps="container--white container--rounded">
 				<nav className="nav">
-					<ul className="flex items-center justify-between">
+					<ul className="menu">
 						{navLinkRoutes.map((route, index) => (
-							<li className="py-[5px]" key={index}>
+							<li className="menu__item" key={index}>
 								<NavLink
 									className={({ isActive }) =>
-										isActive
-											? "p-[7.5px] rounded-md bg-orange-200 font-medium"
-											: "p-[7.5px] rounded-md hover:bg-orange-200"
+										isActive ? "menu__link menu__link--active" : "menu__link"
 									}
 									to={route.path}
 								>
@@ -40,19 +38,13 @@ const Header = () => {
 								</NavLink>
 							</li>
 						))}
-						<li className="p-[7px] rounded-md hover:bg-orange-200">
+						<li className="menu__item menu__link">
 							{!isAuth ? (
-								<button
-									className="cursor-pointer focus:outline-none"
-									onClick={toggleModal}
-								>
+								<button className="button-reset" onClick={toggleModal}>
 									Авторизация
 								</button>
 							) : (
-								<button
-									className="cursor-pointer focus:outline-none"
-									onClick={onClickLogout}
-								>
+								<button className="button-reset" onClick={onClickLogout}>
 									Выход
 								</button>
 							)}

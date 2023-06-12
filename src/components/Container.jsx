@@ -5,8 +5,8 @@ const Container = ({ children, classNameToProps }) => {
 		<div
 			className={
 				classNameToProps
-					? `max-w-7xl py-[5px] px-[15px] mx-auto my-0 bg-white rounded-lg ${classNameToProps}`
-					: "max-w-7xl py-[10px] px-[15px] mx-auto my-0 bg-white rounded-lg"
+					? `container ${classNameToProps}`
+					: "container"
 			}
 		>
 			{children}
