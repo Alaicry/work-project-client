@@ -34,7 +34,7 @@ const AuthModal = ({ toggleModal, modal }) => {
 	};
 
 	return (
-		<div className="w-screen h-screen fixed top-0 left-0 flex items-center justify-center bg-black-rgba">
+		<div className="modal modal--visible">
 			<form
 				className="w-[500px] p-[25px] rounded-xl bg-white relative"
 				onSubmit={handleSubmit(onSubmitAuth)}

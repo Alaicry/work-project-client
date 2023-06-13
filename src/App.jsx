@@ -1,6 +1,4 @@
 import React from "react";
-import Home from "./pages/Home";
-import Guide from "./pages/Guide";
 import Header from "./components/Header";
 import Container from "./components/Container";
 import { useDispatch } from "react-redux";
@@ -8,6 +6,8 @@ import { fetchAuthMe } from "./store/slices/authSlice";
 import { Route, Routes } from "react-router-dom";
 import DevicesGuide from "./pages/DevicesGuide";
 import UsersGuide from "./pages/UsersGuide";
+import { guideLinks, homeLinks } from "./utils/constants/routes";
+import Home from "./pages/Home";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -18,10 +18,10 @@ const App = () => {
 	return (
 		<React.Fragment>
 			<Header />
-			<Container>
+			<Container classNameToProps="container--white container--rounded">
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/guide" element={<Guide />} />
+					<Route path="/" element={<Home list={homeLinks} />} />
+					<Route path="/guide" element={<Home list={guideLinks} />} />
 					<Route path="/guide/terminals" element={<DevicesGuide />} />
 					<Route path="/guide/sensors" element={<DevicesGuide />} />
 					<Route path="/guide/users" element={<UsersGuide />} />

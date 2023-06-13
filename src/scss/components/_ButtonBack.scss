@@ -1,0 +1,24 @@
+.button {
+	padding: 10px;
+	border-radius: 6px;
+	background-color: #fff;
+	transition: all ease-out 0.5s;
+	&:hover {
+		background-color: rgb(240, 245, 250);
+	}
+	&--absolute {
+		position: absolute;
+		top: 11px;
+		left: 5%;
+	}
+	&--flex {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+	}
+  &__icon {
+    width: 30px;
+    height: 30px;
+  }
+}

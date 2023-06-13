@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { IoCaretForwardOutline, IoCaretDownOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { fetchAddDevice, fetchDevicesData } from "../store/slices/guideSlice";
 
 const DeviceForm = () => {

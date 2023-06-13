@@ -6,10 +6,10 @@ const ButtonBack = () => {
 	const navigate = useNavigate();
 	return (
 		<button
-			className="absolute top-[12px] left-[5%] bg-white p-3 rounded-md hover:bg-slate-100 flex items-center justify-center gap-1 text-base transition-all ease-linear delay-[0.15s]"
+			className="button-reset button button--absolute button--flex bg-sla"
 			onClick={() => navigate(-1)}
 		>
-			<IoIosArrowRoundBack className="w-[30px] h-[30px]" />
+			<IoIosArrowRoundBack className="icon button__icon" />
 			Назад
 		</button>
 	);
