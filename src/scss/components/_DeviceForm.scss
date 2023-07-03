@@ -1,0 +1,39 @@
+.devices-guide {
+	padding: 10px;
+	&__button {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		font-weight: 500;
+		margin-bottom: 12px;
+	}
+	&__icon {
+		width: 20px;
+		height: 20px;
+	}
+	&__form {
+		display: flex;
+		flex-direction: column;
+	}
+	&__form-wrapper {
+		padding: 16px;
+		margin-bottom: 16px;
+		background-color: rgb(243, 244, 246);
+		&--rounded {
+			border-radius: 10px;
+		}
+		&--flex {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+		}
+	}
+	&__field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	&__input {
+		height: 40px;
+	}
+}

@@ -8,11 +8,10 @@ const DeviceForm = () => {
 	const [form, setForm] = React.useState(false);
 	const dispatch = useDispatch();
 	const onSubmitAdd = async (values) => {
-
 		dispatch(fetchAddDevice(values));
 		dispatch(fetchDevicesData());
 	};
-	
+
 	const {
 		register,
 		handleSubmit,
@@ -30,30 +29,33 @@ const DeviceForm = () => {
 	return (
 		<React.Fragment>
 			<button
-				className="flex items-center gap-1 font-medium mb-3"
+				className="button-reset devices-guide__button"
 				onClick={() => setForm(!form)}
 			>
 				Открыть форму
 				{form ? (
-					<IoCaretDownOutline className="w-5 h-5" />
+					<IoCaretDownOutline className="devices-guide__icon" />
 				) : (
-					<IoCaretForwardOutline className="w-5 h-5" />
+					<IoCaretForwardOutline className="devices-guide__icon" />
 				)}
 			</button>
 			{form && (
-				<form className="flex flex-col" onSubmit={handleSubmit(onSubmitAdd)}>
-					<div className="mb-4 p-4 bg-gray-100 rounded-md flex flex-col gap-4">
-						<div className="flex flex-col gap-2">
+				<form
+					className="devices-guide__form"
+					onSubmit={handleSubmit(onSubmitAdd)}
+				>
+					<div className="devices-guide__form-wrapper devices-guide__form-wrapper--rounded devices-guide__form-wrapper--flex">
+						<div className="devices-guide__field">
 							<label className="font-medium">Производитель</label>
 							<input
 								type="text"
-								className="h-10 rounded-md pl-[20px] focus:outline-zinc-400"
+								className="devices-guide__input"
 								{...register("manufacturerName", {
 									required: "Укажите производителя",
 								})}
 							/>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="devices-guide__field">
 							<label className="font-medium">Марка</label>
 							<input
 								type="text"
@@ -63,7 +65,7 @@ const DeviceForm = () => {
 								})}
 							/>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="devices-guide__field">
 							<label className="font-medium">Модель</label>
 							<input
 								type="text"
@@ -73,7 +75,7 @@ const DeviceForm = () => {
 								})}
 							/>
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className="devices-guide__field">
 							<label className="font-medium">Тип устройства</label>
 							<select
 								name="deviceType"
@@ -89,7 +91,7 @@ const DeviceForm = () => {
 							</select>
 						</div>
 					</div>
-					<div className="flex flex-col gap-2">
+					<div className="devices-guide__field">
 						<button
 							type="submit"
 							className="text-center mx-auto py-3 px-3 bg-orange-200 rounded-md"

@@ -20,7 +20,6 @@ const AuthModal = ({ toggleModal, modal }) => {
 
 	const onSubmitAuth = async (values) => {
 		const data = await dispatch(fetchAuth(values));
-		console.log(data);
 		if (!data.payload) {
 			return alert("Не удалось авторизоваться!");
 		}
@@ -36,47 +35,47 @@ const AuthModal = ({ toggleModal, modal }) => {
 	return (
 		<div className="modal modal--visible">
 			<form
-				className="w-[500px] p-[25px] rounded-xl bg-white relative"
+				className="auth-form auth-form--relative auth-form--rounded"
 				onSubmit={handleSubmit(onSubmitAuth)}
 			>
 				<button
 					type="button"
-					className="absolute top-[15px] right-[15px] p-1 flex items-center justify-center rounded-full bg-[#f0f0f0] transition-all ease delay-[0.15s] hover:bg-[#dddddd]"
+					className="button-reset auth-form__button auth-form__button--flex auth-form__button--rounded"
 					onClick={toggleModal}
 				>
-					<RxCross1 />
+					<RxCross1 className="icon" />
 				</button>
-				<h2 className="font-medium text-center mb-6">Войдите в свой аккаунт</h2>
-				<div className="flex flex-col gap-6">
-					<div className="flex flex-col gap-2 relative">
-						<label className="text-base">Адрес электронной почты</label>
+				<h2 className="auth-form__title">Войдите в свой аккаунт</h2>
+				<div className="auth-form__wrapper">
+					<div className="auth-form__field">
+						<label className="text text--label">Адрес электронной почты</label>
 						<input
 							type="text"
-							className="py-2 px-3 bg-gray-100 rounded-lg focus:outline-none"
+							className="input"
 							placeholder="Введите почту"
 							{...register("email", { required: "Укажите почту" })}
 						/>
 						{errors.email && (
-							<p className="absolute top-[70px] text-sm text-red-400">
+							<p className="text text--error">
 								{errors.email.message}
 							</p>
 						)}
 					</div>
-					<div className="flex flex-col gap-2 relative">
-						<label className="text-base">Пароль</label>
+					<div className="auth-form__field">
+						<label className="text text--label">Пароль</label>
 						<input
 							type="password"
-							className="py-2 px-3 bg-gray-100 rounded-lg focus:outline-none"
+							className="input"
 							placeholder="Введите пароль"
 							{...register("password", { required: "Укажите пароль" })}
 						/>
 						{errors.password && (
-							<p className="absolute top-[70px] text-sm text-red-400">
+							<p className="text text--error">
 								{errors.password.message}
 							</p>
 						)}
 					</div>
-					<button type="submit" className="hover:font-medium">
+					<button type="submit" className="button-reset auth-form__button-submit">
 						Войти
 					</button>
 				</div>

@@ -11,3 +11,58 @@
 		left: 0;
 	}
 }
+
+.auth-form {
+	width: 500px;
+	padding: 25px;
+	background-color: #fff;
+	&--relative {
+		position: relative;
+	}
+	&--rounded {
+		border-radius: 12px;
+	}
+	&__button {
+		width: 35px;
+		height: 35px;
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		padding: 4px;
+		background-color: #f0f0f0;
+		transition: all ease 0.4s;
+		&-submit {
+			&:hover {
+				font-weight: 500;
+			}
+		}
+		&--flex {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		&--rounded {
+			border-radius: 50%;
+		}
+		&:hover {
+			background-color: #ddd;
+		}
+	}
+
+	&__title {
+		font-weight: 500;
+		text-align: center;
+		margin-bottom: 24px;
+	}
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+	&__field {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-bottom: 40px;
+	}
+}

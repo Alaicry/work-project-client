@@ -6,7 +6,7 @@ const ButtonBack = () => {
 	const navigate = useNavigate();
 	return (
 		<button
-			className="button-reset button button--absolute button--flex bg-sla"
+			className="button-reset button button--absolute button--flex"
 			onClick={() => navigate(-1)}
 		>
 			<IoIosArrowRoundBack className="icon button__icon" />
